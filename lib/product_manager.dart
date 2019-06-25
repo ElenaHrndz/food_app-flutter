@@ -1,16 +1,18 @@
-import 'package:flutter/cupertino.dart' as prefix0;
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import './products.dart';
+import './product_control.dart';
 
 class ProductManager extends StatefulWidget {
   final String startingProduct;
 
-  ProductManager(this.startingProduct);
+  ProductManager({this.startingProduct = 'Sweets Tester'}) {
+    print('[ProductsManajger Widget] Contructor');
+  }
 
   @override
   State<StatefulWidget> createState() {
+    print('[ProductsManajger Widget] createState()');
     return _ProductManagerState();
   }
 }
@@ -20,23 +22,30 @@ class _ProductManagerState extends State<ProductManager> {
 
   @override
   void initState() {
+    print('[ProductsManajger State] initState()');
     super.initState();
     _products.add(widget.startingProduct);
   }
 
   @override
+  void didUpdateWidget(ProductManager oldWidget) {
+    print('[ProductsManajger State] didUpdateWidget()');
+    super.didUpdateWidget(oldWidget);
+  }
+
+  void _addProduct(String product) {
+    setState(() {
+      _products.add(product);
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    print('[ProductsManajger State] build()');
     return Column(children: [
       Container(
         margin: EdgeInsets.all(10.0),
-        child: RaisedButton(
-          onPressed: () {
-            setState(() {
-              _products.add('Advance Food Tester');
-            });
-          },
-          child: Text('Add Product'),
-        ),
+        child: ProductControl(_addProduct),
       ),
       Products(_products)
     ]);
