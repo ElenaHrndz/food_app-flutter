@@ -18,13 +18,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         brightness: Brightness.light,
         primarySwatch: Colors.blueGrey,
-        accentColor: Colors.cyan
-      ),
+        accentColor: Colors.cyan),
       home: Scaffold(
         appBar: AppBar(
           title: Text('EasyList'),
         ),
-        body: ProductManager(startingProduct: 'Food Tester'),
+        body: ProductManager(),
       ),
     );
   }
