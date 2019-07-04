@@ -6,10 +6,24 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-        appBar: AppBar(
-          title: Text('EasyList'),
+      drawer: Drawer(
+        child: Column(
+          children: <Widget>[
+            AppBar(
+              automaticallyImplyLeading: false,
+              title: Text('Choose'),
+              ),
+              ListTile(
+                title: Text('Manage Products'),
+                onLongPress: () {},
+              )
+            ],
+          ),
         ),
-        body: ProductManager(),
+      appBar: AppBar(
+        title: Text('EasyList'),
+      ),
+      body: ProductManager(),
     );
   }
 }
