@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 // import 'package:flutter/rendering.dart';
 
 import './pages/auth.dart';
+import './pages/product_admin.dart';
+import './pages/home.dart';
 
 void main(){
   // debugPaintSizeEnabled = true; 
@@ -19,7 +21,11 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.light,
         primarySwatch: Colors.blueGrey,
         accentColor: Colors.cyan),
-      home: AuthPage(),
+      // home: AuthPage(),
+      routes: {
+        '/': (BuildContext context) => HomePage(),
+        'admin': (BuildContext context) => ProductAdminPage()
+      },
     );
   }
 }
