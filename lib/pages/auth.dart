@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import './home.dart';
+// import './home.dart';
 
 class AuthPage extends StatelessWidget {
   @override
@@ -13,11 +13,7 @@ class AuthPage extends StatelessWidget {
           child: RaisedButton(
             child: Text('Enter'),
             onPressed: () {
-              Navigator.pushReplacement(
-                context, 
-                MaterialPageRoute(
-                  builder: (BuildContext contex) => HomePage()),
-            );
+              Navigator.pushReplacementNamed(context, '/');
           },
         ),
       ),

@@ -10,7 +10,7 @@ class Products extends StatelessWidget {
     print('[Products Widget] Contructor');
   }
 
-  Widget _buildProductItem(BuildContext context, int index){
+  Widget _buildProductItem(BuildContext context, int index) {
     return Card(
       child: Column(
         children: <Widget>[
@@ -20,19 +20,14 @@ class Products extends StatelessWidget {
             alignment: MainAxisAlignment.center,
             children: <Widget>[
               FlatButton(
-                child: Text('Details'), 
-                onPressed: () => Navigator.push<bool>(
-                  context, 
-                  MaterialPageRoute(
-                    builder: (BuildContext contex) => ProductPage(
-                      products[index]['title'], products[index]['image']),
-                  ),
-                )
-                .then((bool value) {
-                  if (value) {
-                    deleteProduct(index);
-                  }
-                }),
+                child: Text('Details'),
+                onPressed: () => Navigator.pushNamed<bool>(
+                            context, '/product/' + index.toString())
+                        .then((bool value) {
+                      if (value) {
+                        deleteProduct(index);
+                      }
+                    }),
               )
             ],
           )
@@ -43,12 +38,12 @@ class Products extends StatelessWidget {
 
   Widget _buildProductList() {
     Widget productCards;
-    if (products.length > 0 ) {
+    if (products.length > 0) {
       productCards = ListView.builder(
-      itemBuilder: _buildProductItem,
-      itemCount: products.length,
-    );
-    }else{
+        itemBuilder: _buildProductItem,
+        itemCount: products.length,
+      );
+    } else {
       productCards = Container();
     }
     return productCards;
