@@ -11,7 +11,7 @@ class AuthPage extends StatelessWidget {
         ),
         body: Center(
           child: RaisedButton(
-            child: Text('LOGING'),
+            child: Text('Enter'),
             onPressed: () {
               Navigator.pushReplacement(
                 context, 
