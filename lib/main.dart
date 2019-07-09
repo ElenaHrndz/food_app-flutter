@@ -20,10 +20,10 @@ class MyApp extends StatefulWidget {
   }
 }
 
-class _MyAppState extends State<MyApp>{
-  List<Map<String,String>> _products = [];
+class _MyAppState extends State<MyApp> {
+  List<Map<String, dynamic>> _products = [];
 
-    void _addProduct(Map<String, String> product) {
+  void _addProduct(Map<String, dynamic> product) {
     setState(() {
       _products.add(product);
     });
@@ -31,7 +31,7 @@ class _MyAppState extends State<MyApp>{
 
   void _deleteProduct(int index) {
     setState(() {
-     _products.removeAt(index);
+      _products.removeAt(index);
     });
   }
 
@@ -45,9 +45,11 @@ class _MyAppState extends State<MyApp>{
           accentColor: Colors.cyan),
       // home: AuthPage(),
       routes: {
-        '/': (BuildContext context) => HomePage(_products, _addProduct, _deleteProduct),
-        'admin': (BuildContext context) => ProductsAdminPage(),
-      }, 
+        '/': (BuildContext context) => AuthPage(),
+        'home': (BuildContext context) => HomePage(_products),
+        'admin': (BuildContext context) =>
+            ProductsAdminPage(_addProduct, _deleteProduct),
+      },
       onGenerateRoute: (RouteSettings settings) {
         final List<String> pathElements = settings.name.split('/');
         if (pathElements[0] != '') {
@@ -56,17 +58,16 @@ class _MyAppState extends State<MyApp>{
         if (pathElements[1] == 'product') {
           final int index = int.parse(pathElements[2]);
           return MaterialPageRoute<bool>(
-            builder: (BuildContext contex) =>
-                ProductPage(_products[index]['title'], _products[index]['image']),
+            builder: (BuildContext contex) => ProductPage(
+                _products[index]['title'], _products[index]['image']),
           );
         }
         return null;
       },
       onUnknownRoute: (RouteSettings settings) {
         return MaterialPageRoute(
-          builder: (BuildContext context) => 
-            HomePage(_products, _addProduct, _deleteProduct));
-      } ,
+            builder: (BuildContext context) => HomePage(_products));
+      },
     );
   }
 }
