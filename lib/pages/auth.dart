@@ -10,7 +10,7 @@ class AuthPage extends StatefulWidget {
 class _AuthPageState extends State<AuthPage>{
   String _emailValue;
   String _passwordValue;
-  bool _acceptTerms;
+  bool _acceptTerms = false;
 
   @override
   Widget build(BuildContext context) {
